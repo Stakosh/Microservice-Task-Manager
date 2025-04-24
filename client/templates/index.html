@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+</head>
+<body>
+    <h1>Task Manager</h1>
+    <form action="/add" method="post">
+        <input type="text" name="title" placeholder="Nueva tarea" required>
+        <button type="submit">Agregar</button>
+    </form>
+
+    <h2>Tareas</h2>
+    <ul>
+    {% for task in tasks %}
+        <li>
+            {% if task.completed %}<s>{{ task.title }}</s>{% else %}{{ task.title }} <a href="/complete/{{ task.id }}">[Completar]</a>{% endif %}
+            <a href="/delete/{{ task.id }}">[Eliminar]</a>
+        </li>
+    {% endfor %}
+    </ul>
+
+    <h2>Logs</h2>
+    <ul>
+    {% for log in logs %}
+        <li>{{ log }}</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
