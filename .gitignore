@@ -1,0 +1,49 @@
+# Entorno virtual
+venv/
+env/
+
+# Archivos de Python compilados
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de logs
+*.log
+log.txt
+
+# Archivos de configuración específicos del entorno
+*.env
+.env.*
+
+# Configuración de VSCode
+.vscode/
+
+# Archivos de Flask
+instance/
+*.db
+
+# Archivos temporales
+*.swp
+*~
+
+# MacOS
+.DS_Store
+
+# Archivos de prueba o desarrollo
+tasks.json
+
+# Archivos específicos de servicios
+services/**/tasks.json
+
+# Archivos de Netlify, Deno Deploy, etc.
+.netlify/
+.deno/
+
+# __pycache__ en cualquier lugar
+**/__pycache__/
+
+# Archivos de compilación
+build/
+dist/
+*.egg-info
