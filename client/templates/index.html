@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Tareas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .task-completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+        .action-btn {
+            margin-right: 5px;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        .complete-btn {
+            background-color: #2196F3;
+        }
+        .delete-btn {
+            background-color: #f44336;
+        }
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #dff0d8;
+            color: #3c763d;
+        }
+        .error {
+            background-color: #f2dede;
+            color: #a94442;
+        }
+        .disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema de Gestión de Tareas</h1>
+        
+        <div id="message-container"></div>
+        
+        <h2>Nueva Tarea</h2>
+        <form id="task-form">
+            <div class="form-group">
+                <label for="title">Título:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="responsible">Responsable:</label>
+                <input type="text" id="responsible" name="responsible" required>
+            </div>
+            <button type="submit">Crear Tarea</button>
+        </form>
+        
+        <h2>Tareas Existentes</h2>
+        <table id="tasks-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Responsable</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tasks-list">
+                <!-- Las tareas se cargarán aquí dinámicamente -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // URL base para las peticiones API
+        const API_URL = 'http://localhost:5000';
+        
+        // Elementos DOM
+        const taskForm = document.getElementById('task-form');
+        const tasksList = document.getElementById('tasks-list');
+        const messageContainer = document.getElementById('message-container');
+        
+        // Función para mostrar mensajes
+        function showMessage(message, type = 'success') {
+            messageContainer.innerHTML = `<div class="message ${type}">${message}</div>`;
+            setTimeout(() => {
+                messageContainer.innerHTML = '';
+            }, 3000);
+        }
+        
+        // Función para cargar todas las tareas
+        async function loadTasks() {
+            try {
+                const response = await fetch(`${API_URL}/tasks`);
+                if (!response.ok) {
+                    throw new Error(`Error ${response.status}: ${response.statusText}`);
+                }
+                const tasks = await response.json();
+                displayTasks(tasks);
+            } catch (error) {
+                showMessage(`Error al cargar las tareas: ${error.message}`, 'error');
+            }
+        }
+        
+        // Función para mostrar las tareas en la tabla
+        function displayTasks(tasks) {
+            tasksList.innerHTML = '';
+            if (tasks.length === 0) {
+                tasksList.innerHTML = '<tr><td colspan="5" style="text-align: center;">No hay tareas disponibles</td></tr>';
+                return;
+            }
+            
+            tasks.forEach(task => {
+                const row = document.createElement('tr');
+                
+                const titleClass = task.completed ? 'task-completed' : '';
+                
+                row.innerHTML = `
+                    <td>${task.id}</td>
+                    <td class="${titleClass}">${task.title}</td>
+                    <td>${task.responsible}</td>
+                    <td>${task.completed ? 'Completada' : 'Pendiente'}</td>
+                    <td>
+                        <button class="action-btn complete-btn" onclick="completeTask(${task.id})" ${task.completed ? 'disabled class="disabled"' : ''}>
+                            ${task.completed ? 'Completada' : 'Completar'}
+                        </button>
+                        <button class="action-btn delete-btn" onclick="deleteTask(${task.id})">Eliminar</button>
+                    </td>
+                `;
+                
+                tasksList.appendChild(row);
+            });
+        }
+        
+        // Función para crear una nueva tarea
+        async function createTask(title, responsible) {
+            try {
+                const response = await fetch(`${API_URL}/tasks`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ title, responsible })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Error ${response.status}: ${response.statusText}`);
+                }
+                
+                showMessage('Tarea creada exitosamente');
+                taskForm.reset();
+                loadTasks();
+            } catch (error) {
+                showMessage(`Error al crear la tarea: ${error.message}`, 'error');
+            }
+        }
+        
+        // Función para marcar una tarea como completada
+        async function completeTask(taskId) {
+            try {
+                const response = await fetch(`${API_URL}/tasks/${taskId}/complete`, {
+                    method: 'PUT'
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Error ${response.status}: ${response.statusText}`);
+                }
+                
+                showMessage('Tarea completada exitosamente');
+                loadTasks();
+            } catch (error) {
+                showMessage(`Error al completar la tarea: ${error.message}`, 'error');
+            }
+        }
+        
+        // Función para eliminar una tarea
+        async function deleteTask(taskId) {
+            if (!confirm('¿Estás seguro de que deseas eliminar esta tarea?')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_URL}/tasks/${taskId}`, {
+                    method: 'DELETE'
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Error ${response.status}: ${response.statusText}`);
+                }
+                
+                showMessage('Tarea eliminada exitosamente');
+                loadTasks();
+            } catch (error) {
+                showMessage(`Error al eliminar la tarea: ${error.message}`, 'error');
+            }
+        }
+        
+        // Event listener para el formulario de creación de tareas
+        taskForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const title = document.getElementById('title').value.trim();
+            const responsible = document.getElementById('responsible').value.trim();
+            
+            if (!title || !responsible) {
+                showMessage('Por favor completa todos los campos', 'error');
+                return;
+            }
+            
+            createTask(title, responsible);
+        });
+        
+        // Cargar las tareas al iniciar la página
+        document.addEventListener('DOMContentLoaded', loadTasks);
+    </script>
+</body>
+</html>

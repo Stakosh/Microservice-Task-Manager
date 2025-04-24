@@ -1,0 +1,17 @@
+[2025-04-24T11:03:18.464808] [Client] Intento de creación de tarea: {'title': 'hacer la cama', 'responsible': 'javi'}
+[2025-04-24T11:03:20.160414] [Client] Intento de creación de tarea: {'title': 'hacer la cama', 'responsible': 'javi'}
+[2025-04-24T11:03:21.156528] [Client] Intento de creación de tarea: {'title': 'hacer la cama', 'responsible': 'javi'}
+[2025-04-24T11:03:21.283310] [Client] Intento de creación de tarea: {'title': 'hacer la cama', 'responsible': 'javi'}
+[2025-04-24T11:03:21.453423] [Client] Intento de creación de tarea: {'title': 'hacer la cama', 'responsible': 'javi'}
+[2025-04-24T11:03:21.592152] [Client] Intento de creación de tarea: {'title': 'hacer la cama', 'responsible': 'javi'}
+[2025-04-24T11:03:21.730965] [Client] Intento de creación de tarea: {'title': 'hacer la cama', 'responsible': 'javi'}
+[2025-04-24T11:03:21.872100] [Client] Intento de creación de tarea: {'title': 'hacer la cama', 'responsible': 'javi'}
+[2025-04-24T11:03:22.010912] [Client] Intento de creación de tarea: {'title': 'hacer la cama', 'responsible': 'javi'}
+[2025-04-24T11:03:24.611042] [Client] Intento de creación de tarea: {'title': 'hacer la cama', 'responsible': 'javi'}
+[2025-04-24T11:03:26.279622] [Client] Intento de creación de tarea: {'title': 'hacer la cama', 'responsible': 'javi'}
+[2025-04-24T11:03:27.322044] [Client] Intento de creación de tarea: {'title': 'hacer la cama', 'responsible': 'javi'}
+[2025-04-24T11:03:27.432617] [Client] Intento de creación de tarea: {'title': 'hacer la cama', 'responsible': 'javi'}
+[2025-04-24T11:03:27.620729] [Client] Intento de creación de tarea: {'title': 'hacer la cama', 'responsible': 'javi'}
+[2025-04-24T11:03:27.730368] [Client] Intento de creación de tarea: {'title': 'hacer la cama', 'responsible': 'javi'}
+[2025-04-24T11:03:27.904407] [Client] Intento de creación de tarea: {'title': 'hacer la cama', 'responsible': 'javi'}
+[2025-04-24T11:03:28.029956] [Client] Intento de creación de tarea: {'title': 'hacer la cama', 'responsible': 'javi'}

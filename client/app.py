@@ -1,7 +1,8 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import requests
 
 LOGGING_SERVICE_URL = "http://localhost:5003/log"
+TASK_SERVICE_URL = "http://localhost:5001"
 
 def log_event(message):
     try:
@@ -9,12 +10,13 @@ def log_event(message):
     except:
         print("⚠️ No se pudo registrar log desde client")
 
-app = Flask(__name__)
-TASK_SERVICE_URL = "http://localhost:5001"
+# Agrega el parámetro 'template_folder'
+app = Flask(__name__, template_folder='templates')
 
 @app.route('/')
 def home():
-    return "Bienvenido al Client del Microservicio"
+    # Renderiza index.html desde la carpeta templates
+    return render_template("index.html")
 
 @app.route('/tasks', methods=['GET'])
 def list_tasks():
@@ -24,6 +26,7 @@ def list_tasks():
 @app.route('/tasks', methods=['POST'])
 def create_task():
     task_data = request.json
+    log_event(f"Intento de creación de tarea: {task_data}")
     res = requests.post(f"{TASK_SERVICE_URL}/tasks", json=task_data)
     return jsonify(res.json())
 
