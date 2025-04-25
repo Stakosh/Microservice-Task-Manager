@@ -1,49 +1,59 @@
-# Entorno virtual
+# Entornos virtuales
 venv/
 env/
+.venv/
+**/venv/
+**/env/
+**/.venv/
 
-# Archivos de Python compilados
+# Archivos de Python
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
 *.pyd
 
-# Archivos de logs
+# Logs
 *.log
 log.txt
 
-# Archivos de configuración específicos del entorno
+# Config
 *.env
 .env.*
-
-# Configuración de VSCode
 .vscode/
+.idea/
+*.code-workspace
 
-# Archivos de Flask
+# Flask / DB
 instance/
 *.db
+
+# Archivos de pruebas
+.pytest_cache/
+.cache/
+htmlcov/
+nosetests.xml
+coverage.xml
 
 # Archivos temporales
 *.swp
 *~
+*.bak
 
-# MacOS
+# Archivos MacOS
 .DS_Store
 
-# Archivos de prueba o desarrollo
+# Docker
+*.tar
+*.img
+*.dockerfile
+.docker/
+docker-compose.override.yml
+
+# Documentación
+_build/
+site/
+docs/_build/
+
+# Archivos del proyecto
 tasks.json
-
-# Archivos específicos de servicios
 services/**/tasks.json
-
-# Archivos de Netlify, Deno Deploy, etc.
-.netlify/
-.deno/
-
-# __pycache__ en cualquier lugar
-**/__pycache__/
-
-# Archivos de compilación
-build/
-dist/
-*.egg-info
