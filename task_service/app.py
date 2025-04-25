@@ -45,6 +45,7 @@ def create_task():
         new_id = max([t.get("id", 0) for t in tasks] + [0]) + 1
         new["id"] = new_id
         tasks.append(new)
+        new["completed"] = False
         requests.post(STORAGE_URL, json=tasks)
         Thread(target=log_event, args=(f"Tarea creada: {new}",)).start()
         Thread(target=notify, args=(f"Nueva tarea: {new.get('title', '(sin título)')}",)).start()

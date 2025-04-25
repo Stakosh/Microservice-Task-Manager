@@ -1,29 +1,8 @@
 [
   {
-    "estado": "completada",
+    "completed": false,
     "id": 2,
-    "responsible": "javiera soto",
-    "title": "comer algo"
-  },
-  {
-    "id": 3,
-    "responsible": "andres",
-    "title": "limpiar la pieza"
-  },
-  {
-    "id": 4,
-    "responsible": "yo",
-    "title": "tarea 1",
-    "estado": "completada"
-  },
-  {
-    "id": 5,
-    "responsible": "yo",
-    "title": "tarea 2"
-  },
-  {
-    "id": 6,
-    "responsible": "yo",
-    "title": "tarea 3"
+    "responsible": "javi",
+    "title": "limpiar cocina"
   }
 ]

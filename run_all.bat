@@ -33,23 +33,20 @@ echo            /___\
 echo           /_____\
 echo          /_______\
 echo           ^|=   =^|      
-echo           ^|     ^|     Todos los servicios han sido lanzados
+echo           ^|     ^|    
 echo           ^|     ^|     
-echo           ^|     ^|     Accede al sistema en:
-echo           ^|     ^|    http://localhost:5000
+echo           ^|     ^|     
+echo           ^|     ^|   
 echo           ^|     ^|
-echo          /^|##!##^|\
+echo          /^|##!##^|\                Todos los servicios han sido lanzados
 echo         / ^|##!##^| \
 echo        /  ^|##!##^|  \
-echo       ^|  /  ^| ^| \  ^|
+echo       ^|  /  ^| ^| \  ^|      Accede al sistema en:
 echo       ^| /   ^( ^)  \ ^|
 echo       ^|/    ^( ^)   \^|
-echo           ^(^(   ^)^)
+echo           ^(^(   ^)^)               http://localhost:5000
 echo          ^(^(  :  ^)^)
 echo          ^(^(  :  ^)^)
 echo           ^(^(   ^)^)
 echo            ^(^( ^)^)
 echo             ^( ^)
-echo               .
-echo               .
-echo               .

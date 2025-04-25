@@ -5,131 +5,337 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Gestión de Tareas</title>
     <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --success-color: #4caf50;
+            --danger-color: #e63946;
+            --warning-color: #fca311;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f5f5f5;
-        }
-        h1 {
+            background-color: #f3f4f6;
             color: #333;
-            text-align: center;
+            line-height: 1.6;
         }
+        
+        h1, h2 {
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+        
         .container {
             background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
         }
+        
+        .container:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+        }
+        
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
+        
         label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
         }
+        
         input, select {
             width: 100%;
-            padding: 8px;
+            padding: 12px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 6px;
             box-sizing: border-box;
+            font-size: 16px;
+            transition: border 0.3s, box-shadow 0.3s;
         }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+        
         button {
-            background-color: #4CAF50;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
             color: white;
             border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
+            padding: 12px 20px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(67, 97, 238, 0.2);
+            letter-spacing: 0.5px;
         }
+        
         button:hover {
-            background-color: #45a049;
+            background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(67, 97, 238, 0.25);
         }
+        
         table {
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
         }
+        
         th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
+            padding: 15px;
             text-align: left;
+            border-bottom: 1px solid #eee;
         }
+        
         th {
-            background-color: #f2f2f2;
+            background-color: #f6f8ff;
+            color: var(--secondary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
         }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
+        
+        tr:last-child td {
+            border-bottom: none;
         }
+        
+        tr:hover {
+            background-color: #f9fafd;
+        }
+        
         .task-completed {
             text-decoration: line-through;
             color: #888;
         }
+        
         .action-btn {
-            margin-right: 5px;
-            padding: 5px 10px;
+            margin-right: 8px;
+            padding: 8px 12px;
             font-size: 14px;
-        }
-        .complete-btn {
-            background-color: #2196F3;
-        }
-        .delete-btn {
-            background-color: #f44336;
-        }
-        .message {
-            margin: 10px 0;
-            padding: 10px;
             border-radius: 4px;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+        
+        .complete-btn {
+            background-color: var(--primary-color);
+        }
+        
+        .complete-btn:hover {
+            background-color: #3a56d4;
+        }
+        
+        .delete-btn {
+            background-color: var(--danger-color);
+        }
+        
+        .delete-btn:hover {
+            background-color: #d32f2f;
+        }
+        
+        .message {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            animation: slideIn 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .message::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        
         .success {
-            background-color: #dff0d8;
-            color: #3c763d;
+            background-color: #e6f7e6;
+            color: #2e7d32;
+            border-left: 4px solid var(--success-color);
         }
+        
+        .success::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232e7d32'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+        }
+        
         .error {
-            background-color: #f2dede;
-            color: #a94442;
+            background-color: #fde8e7;
+            color: #c62828;
+            border-left: 4px solid var(--danger-color);
         }
+        
+        .error::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c62828'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'/%3E%3C/svg%3E");
+        }
+        
         .disabled {
-            opacity: 0.5;
-            cursor: not-allowed;   
-
-
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        /* Loader styles */
         #loader {
             display: none;
-            margin: 20px 0;
+            margin: 30px auto;
             text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            max-width: 400px;
+            animation: pulse 2s infinite;
         }
-        .grid-loader {
-            display: inline-grid;
-            grid-template-columns: repeat(3, 10px);
-            gap: 6px;
-            justify-content: center;
-        }
-        .grid-loader div {
-            width: 10px;
-            height: 10px;
-            background: #3498db;
-            animation: pulse 1.2s infinite ease-in-out;
-        }
-        .grid-loader div:nth-child(1) { animation-delay: 0s; }
-        .grid-loader div:nth-child(2) { animation-delay: 0.1s; }
-        .grid-loader div:nth-child(3) { animation-delay: 0.2s; }
-        .grid-loader div:nth-child(4) { animation-delay: 0.3s; }
-        .grid-loader div:nth-child(5) { animation-delay: 0.4s; }
-        .grid-loader div:nth-child(6) { animation-delay: 0.5s; }
-        .grid-loader div:nth-child(7) { animation-delay: 0.6s; }
-        .grid-loader div:nth-child(8) { animation-delay: 0.7s; }
-        .grid-loader div:nth-child(9) { animation-delay: 0.8s; }
-
+        
         @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(0.6); opacity: 0.3; }
+            0% { box-shadow: 0 5px 15px rgba(67, 97, 238, 0.1); }
+            50% { box-shadow: 0 5px 20px rgba(67, 97, 238, 0.3); }
+            100% { box-shadow: 0 5px 15px rgba(67, 97, 238, 0.1); }
+        }
+        
+        .spinner {
+            width: 70px;
+            text-align: center;
+            margin: 0 auto 15px;
+        }
+        
+        .spinner > div {
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary-color);
+            border-radius: 100%;
+            display: inline-block;
+            animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+            margin: 0 3px;
+        }
+        
+        .spinner .bounce1 {
+            animation-delay: -0.32s;
+        }
+        
+        .spinner .bounce2 {
+            animation-delay: -0.16s;
+        }
+        
+        @keyframes sk-bouncedelay {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1.0); }
+        }
+        
+        #loader p {
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            button {
+                width: 100%;
+            }
+            
+            th, td {
+                padding: 10px;
+            }
+            
+            .action-btn {
+                margin-bottom: 5px;
+                display: block;
+                width: 100%;
+            }
         }
 
+        /* Estado vacío */
+        .empty-state {
+            text-align: center;
+            padding: 30px;
+            color: #6c757d;
+        }
+
+        .empty-state svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+            color: #adb5bd;
+        }
+        
+        /* Badge para estados */
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .status-pending {
+            background-color: #e8f4fd;
+            color: #0288d1;
+        }
+        
+        .status-completed {
+            background-color: #e6f7e6;
+            color: #2e7d32;
         }
     </style>
 </head>
@@ -138,14 +344,13 @@
         <h1>Sistema de Gestión de Tareas</h1>
 
         <div id="loader">
-            <div class="grid-loader">
-              <div></div><div></div><div></div>
-              <div></div><div></div><div></div>
-              <div></div><div></div><div></div>
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
             </div>
-            <p style="text-align: center;">Cargando tareas...</p>
-          </div>
-          
+            <p>Cargando tareas...</p>
+        </div>
         
         <div id="message-container"></div>
         
@@ -153,11 +358,11 @@
         <form id="task-form">
             <div class="form-group">
                 <label for="title">Título:</label>
-                <input type="text" id="title" name="title" required>
+                <input type="text" id="title" name="title" required placeholder="Ingresa el título de la tarea">
             </div>
             <div class="form-group">
                 <label for="responsible">Responsable:</label>
-                <input type="text" id="responsible" name="responsible" required>
+                <input type="text" id="responsible" name="responsible" required placeholder="Nombre del responsable">
             </div>
             <button type="submit">Crear Tarea</button>
         </form>
@@ -187,25 +392,39 @@
         const taskForm = document.getElementById('task-form');
         const tasksList = document.getElementById('tasks-list');
         const messageContainer = document.getElementById('message-container');
+        const loader = document.getElementById('loader');
         
         // Función para mostrar mensajes
         function showMessage(message, type = 'success') {
             messageContainer.innerHTML = `<div class="message ${type}">${message}</div>`;
             setTimeout(() => {
                 messageContainer.innerHTML = '';
-            }, 3000);
+            }, 4000);
+        }
+        
+        // Función para manejar el loader
+        function toggleLoader(show) {
+            loader.style.display = show ? 'block' : 'none';
         }
         
         // Función para cargar todas las tareas
         async function loadTasks() {
             try {
+                toggleLoader(true);
+                
                 const response = await fetch(`${API_URL}/tasks`);
                 if (!response.ok) {
                     throw new Error(`Error ${response.status}: ${response.statusText}`);
                 }
                 const tasks = await response.json();
-                displayTasks(tasks);
+                
+                // Pequeña demora para apreciar el loader (quitar en producción)
+                setTimeout(() => {
+                    toggleLoader(false);
+                    displayTasks(tasks);
+                }, 800);
             } catch (error) {
+                toggleLoader(false);
                 showMessage(`Error al cargar las tareas: ${error.message}`, 'error');
             }
         }
@@ -214,7 +433,19 @@
         function displayTasks(tasks) {
             tasksList.innerHTML = '';
             if (tasks.length === 0) {
-                tasksList.innerHTML = '<tr><td colspan="5" style="text-align: center;">No hay tareas disponibles</td></tr>';
+                tasksList.innerHTML = `
+                    <tr>
+                        <td colspan="5">
+                            <div class="empty-state">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                </svg>
+                                <h3>No hay tareas disponibles</h3>
+                                <p>Crea una nueva tarea para comenzar.</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
                 return;
             }
             
@@ -222,12 +453,14 @@
                 const row = document.createElement('tr');
                 
                 const titleClass = task.completed ? 'task-completed' : '';
+                const statusClass = task.completed ? 'status-completed' : 'status-pending';
+                const statusText = task.completed ? 'Completada' : 'Pendiente';
                 
                 row.innerHTML = `
-                    <td>${task.id}</td>
+                    <td>#${task.id}</td>
                     <td class="${titleClass}">${task.title}</td>
                     <td>${task.responsible}</td>
-                    <td>${task.completed ? 'Completada' : 'Pendiente'}</td>
+                    <td><span class="status-badge ${statusClass}">${statusText}</span></td>
                     <td>
                         <button class="action-btn complete-btn" onclick="completeTask(${task.id})" ${task.completed ? 'disabled class="disabled"' : ''}>
                             ${task.completed ? 'Completada' : 'Completar'}
@@ -243,6 +476,8 @@
         // Función para crear una nueva tarea
         async function createTask(title, responsible) {
             try {
+                toggleLoader(true);
+                
                 const response = await fetch(`${API_URL}/tasks`, {
                     method: 'POST',
                     headers: {
@@ -255,10 +490,14 @@
                     throw new Error(`Error ${response.status}: ${response.statusText}`);
                 }
                 
-                showMessage('Tarea creada exitosamente');
-                taskForm.reset();
-                loadTasks();
+                setTimeout(() => {
+                    toggleLoader(false);
+                    showMessage('¡Tarea creada exitosamente!');
+                    taskForm.reset();
+                    loadTasks();
+                }, 600);
             } catch (error) {
+                toggleLoader(false);
                 showMessage(`Error al crear la tarea: ${error.message}`, 'error');
             }
         }
@@ -266,6 +505,8 @@
         // Función para marcar una tarea como completada
         async function completeTask(taskId) {
             try {
+                toggleLoader(true);
+                
                 const response = await fetch(`${API_URL}/tasks/${taskId}/complete`, {
                     method: 'PUT'
                 });
@@ -274,9 +515,13 @@
                     throw new Error(`Error ${response.status}: ${response.statusText}`);
                 }
                 
-                showMessage('Tarea completada exitosamente');
-                loadTasks();
+                setTimeout(() => {
+                    toggleLoader(false);
+                    showMessage('¡Tarea completada exitosamente!');
+                    loadTasks();
+                }, 600);
             } catch (error) {
+                toggleLoader(false);
                 showMessage(`Error al completar la tarea: ${error.message}`, 'error');
             }
         }
@@ -288,6 +533,8 @@
             }
             
             try {
+                toggleLoader(true);
+                
                 const response = await fetch(`${API_URL}/tasks/${taskId}`, {
                     method: 'DELETE'
                 });
@@ -296,9 +543,13 @@
                     throw new Error(`Error ${response.status}: ${response.statusText}`);
                 }
                 
-                showMessage('Tarea eliminada exitosamente');
-                loadTasks();
+                setTimeout(() => {
+                    toggleLoader(false);
+                    showMessage('¡Tarea eliminada exitosamente!');
+                    loadTasks();
+                }, 600);
             } catch (error) {
+                toggleLoader(false);
                 showMessage(`Error al eliminar la tarea: ${error.message}`, 'error');
             }
         }
@@ -318,7 +569,9 @@
         });
         
         // Cargar las tareas al iniciar la página
-        document.addEventListener('DOMContentLoaded', loadTasks);
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTasks();
+        });
     </script>
 </body>
 </html>

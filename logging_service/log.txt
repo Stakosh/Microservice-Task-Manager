@@ -61,3 +61,27 @@
 [2025-04-24T20:43:55.025540] [Task Service] Tarea completada: ID 4
 [2025-04-24T20:43:57.455006] [Task Service] Listado de tareas
 [2025-04-24T20:43:59.128865] [Task Service] Listado de tareas
+[2025-04-24T20:54:22.259680] [Task Service] Listado de tareas
+[2025-04-24T20:55:36.627620] [Task Service] Listado de tareas
+[2025-04-24T21:00:00.414889] [Task Service] Listado de tareas
+[2025-04-24T21:00:10.553889] [Task Service] Tarea completada: ID 2
+[2025-04-24T21:00:11.411583] [Task Service] Tarea completada: ID 3
+[2025-04-24T21:00:12.424297] [Task Service] Tarea completada: ID 4
+[2025-04-24T21:00:12.969565] [Task Service] Tarea completada: ID 5
+[2025-04-24T21:00:13.314562] [Task Service] Tarea completada: ID 6
+[2025-04-24T21:00:15.235036] [Task Service] Listado de tareas
+[2025-04-24T21:00:19.321959] [Task Service] Listado de tareas
+[2025-04-24T21:00:23.378026] [Task Service] Listado de tareas
+[2025-04-24T21:00:27.473017] [Task Service] Listado de tareas
+[2025-04-24T21:00:31.572367] [Task Service] Listado de tareas
+[2025-04-24T21:13:28.389114] [Task Service] Listado de tareas
+[2025-04-24T21:13:35.804770] [Client] Intento de creación de tarea: {'title': 'limpiar arenero', 'responsible': 'andres'}
+[2025-04-24T21:13:43.968708] [Task Service] Tarea creada: {'title': 'limpiar arenero', 'responsible': 'andres', 'id': 1, 'completed': False}
+[2025-04-24T21:13:48.643868] [Task Service] Listado de tareas
+[2025-04-24T21:13:55.579400] [Client] Intento de creación de tarea: {'title': 'limpiar cocina', 'responsible': 'javi'}
+[2025-04-24T21:14:03.681922] [Task Service] Tarea creada: {'title': 'limpiar cocina', 'responsible': 'javi', 'id': 2, 'completed': False}
+[2025-04-24T21:14:08.406441] [Task Service] Listado de tareas
+[2025-04-24T21:14:18.005140] [Task Service] Tarea completada: ID 1
+[2025-04-24T21:14:22.720522] [Task Service] Listado de tareas
+[2025-04-24T21:14:37.014602] [Task Service] Tarea eliminada: ID 1
+[2025-04-24T21:14:41.719007] [Task Service] Listado de tareas
