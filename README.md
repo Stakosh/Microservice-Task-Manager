@@ -1,9 +1,5 @@
 # Arquitectura de Sistemas: TICS317 – Microservice Task Manager
 
-![Logo UAI](../mvc/assets/UAI.png)
-
----
-
 ## 📚 Descripción del Proyecto
 
 **Microservice Task Manager** es un caso de estudio para la asignatura **Arquitectura de Sistemas (TICS317)**. Consiste en una aplicación basada en arquitectura de microservicios que permite gestionar tareas (crear, listar, completar y eliminar) a través de servicios independientes que se comunican mediante HTTP.
