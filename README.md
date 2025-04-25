@@ -50,13 +50,13 @@ pip install -r requirements.txt
 ```
 
 **Ramas disponibles para revisión:**
-- `javi1` – Implementación del proyecto por el estudiante **Javi Soto**.
-- `javi2` – Implementación del proyecto por el estudiante **[Nombre Estudiante 2]**.
+- `javi1` – Implementación del proyecto por el estudiante **Javiera**.
+- `MMoreira9451-patch-1` – Implementación del proyecto por el estudiante **Mateo**.
 
 > Cambia de rama para revisar cada propuesta:
 > ```bash
 > git checkout javi1   # Revisión de la versión de Javi Soto
-> git checkout javi2   # Revisión de la versión del otro estudiante
+> git checkout MMoreira9451-patch-1   # Revisión de la versión de Mateo
 > ```
 
 ---
