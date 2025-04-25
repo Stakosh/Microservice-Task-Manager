@@ -8,7 +8,7 @@ def log_event(message):
     try:
         requests.post(LOGGING_SERVICE_URL, json={"message": f"[Client] {message}"})
     except:
-        print("⚠️ No se pudo registrar log desde client")
+        print(" No se pudo registrar log desde client")
 
 # Agrega el parámetro 'template_folder'
 app = Flask(__name__, template_folder='templates')

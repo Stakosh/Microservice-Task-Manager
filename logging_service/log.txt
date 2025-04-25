@@ -15,3 +15,49 @@
 [2025-04-24T11:03:27.730368] [Client] Intento de creaci髇 de tarea: {'title': 'hacer la cama', 'responsible': 'javi'}
 [2025-04-24T11:03:27.904407] [Client] Intento de creaci髇 de tarea: {'title': 'hacer la cama', 'responsible': 'javi'}
 [2025-04-24T11:03:28.029956] [Client] Intento de creaci髇 de tarea: {'title': 'hacer la cama', 'responsible': 'javi'}
+[2025-04-24T16:15:48.211870] Acceso a ruta / de Logging Service
+[2025-04-24T16:21:28.506869] Acceso a ruta / de Logging Service
+[2025-04-24T18:37:06.884508] [Client] Intento de creaci髇 de tarea: {'title': 'a', 'responsible': 'a'}
+[2025-04-24T18:37:10.090216] [Task Service] Listado de tareas
+[2025-04-24T18:44:04.665002] [Client] Intento de creaci贸n de tarea: {'title': 'comer algo', 'responsible': 'yop'}
+[2025-04-24T18:56:26.118756] [Task Service] Listado de tareas
+[2025-04-24T18:56:46.349742] [Client] Intento de creaci贸n de tarea: {'title': 'comer algo', 'responsible': 'yop'}
+[2025-04-24T18:56:52.452260] [Task Service] Error al crear tarea: 'str' object has no attribute 'get'
+[2025-04-24T18:56:58.704516] [Task Service] Listado de tareas
+[2025-04-24T19:02:09.686466] [Task Service] Listado de tareas
+[2025-04-24T19:02:10.198835] [Client] Intento de creaci贸n de tarea: {'title': 'asda', 'responsible': 'asdaaaaaaa'}
+[2025-04-24T19:02:18.341100] [Task Service] Tarea creada: {'title': 'asda', 'responsible': 'asdaaaaaaa', 'id': 1}
+[2025-04-24T19:05:11.980536] [Task Service] Listado de tareas
+[2025-04-24T19:05:16.203840] [Client] Intento de creaci贸n de tarea: {'title': 'comer algo', 'responsible': 'javiera soto'}
+[2025-04-24T19:05:24.293025] [Task Service] Tarea creada: {'title': 'comer algo', 'responsible': 'javiera soto', 'id': 2}
+[2025-04-24T19:05:34.596149] [Task Service] Listado de tareas
+[2025-04-24T19:47:49.635895] [Task Service] Listado de tareas
+[2025-04-24T19:47:55.195243] [Client] Intento de creaci贸n de tarea: {'title': 'limpiar la pieza', 'responsible': 'andres'}
+[2025-04-24T19:48:03.367045] [Task Service] Tarea creada: {'title': 'limpiar la pieza', 'responsible': 'andres', 'id': 3}
+[2025-04-24T19:48:11.568978] [Task Service] Listado de tareas
+[2025-04-24T20:09:56.463295] [Task Service] Listado de tareas
+[2025-04-24T20:10:51.738893] [Task Service] Tarea eliminada: ID 1
+[2025-04-24T20:10:56.991609] [Task Service] Tarea eliminada: ID 1
+[2025-04-24T20:10:58.978704] [Task Service] Listado de tareas
+[2025-04-24T20:11:04.327024] [Task Service] Listado de tareas
+[2025-04-24T20:13:35.595501] [Task Service] Listado de tareas
+[2025-04-24T20:20:19.474481] [Task Service] Listado de tareas
+[2025-04-24T20:21:53.767978] [Task Service] Tarea completada: ID 2
+[2025-04-24T20:21:57.878186] [Task Service] Listado de tareas
+[2025-04-24T20:22:24.272467] [Task Service] Listado de tareas
+[2025-04-24T20:22:47.863977] [Client] Intento de creaci贸n de tarea: {'title': 'tarea 1', 'responsible': 'yo'}
+[2025-04-24T20:22:56.037662] [Task Service] Tarea creada: {'title': 'tarea 1', 'responsible': 'yo', 'id': 4}
+[2025-04-24T20:23:00.066085] [Task Service] Listado de tareas
+[2025-04-24T20:23:01.054569] [Client] Intento de creaci贸n de tarea: {'title': 'tarea 2', 'responsible': 'yo'}
+[2025-04-24T20:23:09.138891] [Task Service] Tarea creada: {'title': 'tarea 2', 'responsible': 'yo', 'id': 5}
+[2025-04-24T20:23:13.170852] [Task Service] Listado de tareas
+[2025-04-24T20:23:17.009134] [Client] Intento de creaci贸n de tarea: {'title': 'tarea 3', 'responsible': 'yo'}
+[2025-04-24T20:23:25.114235] [Task Service] Tarea creada: {'title': 'tarea 3', 'responsible': 'yo', 'id': 6}
+[2025-04-24T20:23:29.198094] [Task Service] Listado de tareas
+[2025-04-24T20:43:42.973137] [Task Service] Listado de tareas
+[2025-04-24T20:43:50.711821] [Task Service] Tarea completada: ID 2
+[2025-04-24T20:43:53.262543] [Task Service] Tarea completada: ID 3
+[2025-04-24T20:43:54.793925] [Task Service] Listado de tareas
+[2025-04-24T20:43:55.025540] [Task Service] Tarea completada: ID 4
+[2025-04-24T20:43:57.455006] [Task Service] Listado de tareas
+[2025-04-24T20:43:59.128865] [Task Service] Listado de tareas
