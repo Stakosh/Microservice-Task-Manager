@@ -21,9 +21,9 @@ app = Flask(__name__)
 # Lista de servidores backend
 SERVERS = [
     "http://localhost:5001",
-    "http://localhost:5002"
-    "http://localhost:5003"
-    "http://localhost:5004"
+    "http://localhost:5002",
+    "http://localhost:5003",
+    "http://localhost:5004",
 ]
 
 # Registrar servidores caídos y su tiempo de caída
