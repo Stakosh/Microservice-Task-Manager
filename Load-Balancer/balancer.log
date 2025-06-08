@@ -1,0 +1,20 @@
+2025-06-07 21:28:04,419 - INFO - Verificando servidores al inicio...
+2025-06-07 21:28:08,475 - INFO - Balanceador de carga iniciado en http://localhost:8080
+2025-06-07 21:28:08,476 - INFO - Puedes verificar el estado de los servidores en http://localhost:8080/status
+2025-06-07 21:28:08,529 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.87:8080
+2025-06-07 21:28:08,529 - INFO - [33mPress CTRL+C to quit[0m
+2025-06-07 21:30:18,433 - INFO - Verificando servidores al inicio...
+2025-06-07 21:30:20,473 - WARNING - Error en health check para http://localhost:5002http://localhost:5003http://localhost:5004: Failed to parse: http://localhost:5002http://localhost:5003http://localhost:5004/health
+2025-06-07 21:30:20,478 - INFO - Balanceador de carga iniciado en http://localhost:8080
+2025-06-07 21:30:20,478 - INFO - Puedes verificar el estado de los servidores en http://localhost:8080/status
+2025-06-07 21:30:20,522 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.87:8080
+2025-06-07 21:30:20,522 - INFO - [33mPress CTRL+C to quit[0m
+2025-06-07 21:30:22,497 - WARNING - Error en health check para http://localhost:5002http://localhost:5003http://localhost:5004: Failed to parse: http://localhost:5002http://localhost:5003http://localhost:5004/health
+2025-06-07 21:30:29,510 - WARNING - Error en health check para http://localhost:5002http://localhost:5003http://localhost:5004: Failed to parse: http://localhost:5002http://localhost:5003http://localhost:5004/health
+2025-06-07 21:30:36,531 - WARNING - Error en health check para http://localhost:5002http://localhost:5003http://localhost:5004: Failed to parse: http://localhost:5002http://localhost:5003http://localhost:5004/health

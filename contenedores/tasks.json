@@ -1,0 +1,14 @@
+[
+    {
+        "title": "salir a pasear",
+        "completed": true
+    },
+    {
+        "title": "estudiar fep",
+        "completed": false
+    },
+    {
+        "title": "terminar informe de estrategia ti",
+        "completed": true
+    }
+]

@@ -1,0 +1,59 @@
+# Entornos virtuales
+venv/
+env/
+.venv/
+**/venv/
+**/env/
+**/.venv/
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Logs
+*.log
+log.txt
+
+# Config
+*.env
+.env.*
+.vscode/
+.idea/
+*.code-workspace
+
+# Flask / DB
+instance/
+*.db
+
+# Archivos de pruebas
+.pytest_cache/
+.cache/
+htmlcov/
+nosetests.xml
+coverage.xml
+
+# Archivos temporales
+*.swp
+*~
+*.bak
+
+# Archivos MacOS
+.DS_Store
+
+# Docker
+*.tar
+*.img
+*.dockerfile
+.docker/
+docker-compose.override.yml
+
+# Documentación
+_build/
+site/
+docs/_build/
+
+# Archivos del proyecto
+tasks.json
+services/**/tasks.json
