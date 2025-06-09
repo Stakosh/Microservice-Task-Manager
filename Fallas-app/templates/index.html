@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Tareas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: {{ background_color }};
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+        .actions {
+            margin-left: auto;
+        }
+        .actions button {
+            margin-left: 5px;
+            border-radius: 4px;
+        }
+        .complete-btn {
+            background-color: #2196F3;
+        }
+        .complete-btn:hover {
+            background-color: #0b7dda;
+        }
+        .delete-btn {
+            background-color: #f44336;
+        }
+        .delete-btn:hover {
+            background-color: #d32f2f;
+        }
+        .task-title {
+            flex: 1;
+            margin-left: 10px;
+        }
+        .server-info {
+            text-align: center;
+            font-size: 0.8em;
+            color: #333;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gestor de Tareas</h1>
+
+    <form action="/tasks/add" method="post">
+        <input type="text" name="title" placeholder="Ingrese una nueva tarea" required>
+        <button type="submit">Agregar</button>
+    </form>
+
+    <ul>
+        {% if tasks %}
+            {% for task in tasks %}
+            <li>
+                <span class="task-title {% if task.completed %}completed{% endif %}">
+                    {{ task.title }}
+                </span>
+                <div class="actions">
+                    {% if not task.completed %}
+                    <form action="/tasks/{{ loop.index0 }}/complete" method="post" style="display: inline;">
+                        <button type="submit" class="complete-btn">Completar</button>
+                    </form>
+                    {% endif %}
+                    <form action="/tasks/{{ loop.index0 }}/delete" method="post" style="display: inline;">
+                        <button type="submit" class="delete-btn">Eliminar</button>
+                    </form>
+                </div>
+            </li>
+            {% endfor %}
+        {% else %}
+            <li>No hay tareas para mostrar.</li>
+        {% endif %}
+    </ul>
+
+    <div class="server-info">
+        <strong>Servidor atendiendo esta solicitud:</strong> Puerto {{ request.host.split(':')[1] }}
+    </div>
+
+    <script>
+        // JavaScript para mostrar información en tiempo real del servidor
+        function checkServerInfo() {
+            fetch('/info')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Información del servidor:', data);
+                });
+        }
+
+        // Actualizar información cada 5 segundos
+        setInterval(checkServerInfo, 5000);
+    </script>
+</body>
+</html>
