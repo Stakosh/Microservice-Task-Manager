@@ -1,0 +1,51 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+package "Models" {
+  class Task {
+    +title: str
+    +completed: bool
+    +mark_done()
+  }
+}
+
+package "Storage" {
+  interface TaskRepo {
+    +load()
+    +save(tasks)
+  }
+
+  class TaskRepoPersistent {
+    +load()
+    +save(tasks)
+  }
+
+  class TaskRepoMemory {
+    +load()
+    +save(tasks)
+  }
+}
+
+package "Controller" {
+  class TaskController {
+    +show_tasks()
+    +add_task()
+    +complete_task()
+    +delete_task()
+  }
+}
+
+package "View" {
+  class TaskView {
+    +show_menu()
+    +show_tasks()
+  }
+}
+
+TaskRepo <|-- TaskRepoPersistent
+TaskRepo <|-- TaskRepoMemory
+TaskController --> TaskView
+TaskController --> Task
+TaskController --> TaskRepo
+
+@enduml

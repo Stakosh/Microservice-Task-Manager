@@ -1,0 +1,48 @@
+@startuml
+actor Usuario
+
+== Repositorio en memoria ==
+Usuario -> TaskRepoInMemory : __init__()
+activate TaskRepoInMemory
+TaskRepoInMemory -> TaskRepoInMemory : self.tasks = []
+deactivate TaskRepoInMemory
+
+Usuario -> Task : __init__("Estudiar", False)
+Usuario -> TaskRepoInMemory : add_task(task)
+activate TaskRepoInMemory
+TaskRepoInMemory -> TaskRepoInMemory : self.tasks.append(task)
+deactivate TaskRepoInMemory
+
+Usuario -> TaskRepoInMemory : get_all_tasks()
+activate TaskRepoInMemory
+TaskRepoInMemory --> Usuario : return list of tasks
+deactivate TaskRepoInMemory
+
+Usuario -> TaskRepoInMemory : delete_task(0)
+activate TaskRepoInMemory
+alt índice válido
+    TaskRepoInMemory -> TaskRepoInMemory : del self.tasks[0]
+    TaskRepoInMemory --> Usuario : return True
+else índice inválido
+    TaskRepoInMemory --> Usuario : return False
+end
+deactivate TaskRepoInMemory
+
+== Repositorio persistente ==
+Usuario -> TaskRepoPersistent : save_tasks(tasks)
+activate TaskRepoPersistent
+TaskRepoPersistent -> Task : to_dict()
+TaskRepoPersistent -> JSON : dump(tasks_data)
+deactivate TaskRepoPersistent
+
+Usuario -> TaskRepoPersistent : load_tasks()
+activate TaskRepoPersistent
+alt Archivo existe
+    TaskRepoPersistent -> JSON : load(file)
+    JSON -> Task : from_dict()
+    TaskRepoPersistent --> Usuario : lista de tareas
+else Archivo no existe o error
+    TaskRepoPersistent --> Usuario : []
+end
+deactivate TaskRepoPersistent
+@enduml

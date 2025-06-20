@@ -1,0 +1,52 @@
+@startuml
+|TaskController|
+start
+
+:Inicializa TaskController;
+:load_tasks();
+|TaskView|
+:show_tasks(tasks);
+:show_message("Tareas mostradas.");
+stop
+
+|TaskController|
+if (¿Agregar tarea?) then (Sí)
+  :get_task_input();
+  if (¿Título vacío?) then (Sí)
+    :show_message("El título no puede estar vacío.");
+  else (No)
+    :crear nueva tarea;
+    :append tarea a lista;
+    :save_tasks(tasks);
+    :show_message("Tarea agregada correctamente.");
+  endif
+endif
+
+|TaskController|
+if (¿Completar tarea?) then (Sí)
+  :show_tasks(tasks);
+  :get_task_number();
+  if (¿Número inválido?) then (Sí)
+    :show_message("Número de tarea inválido.");
+  else (No)
+    :mark_completed();
+    :save_tasks(tasks);
+    :show_message("Tarea completada.");
+  endif
+endif
+
+|TaskController|
+if (¿Eliminar tarea?) then (Sí)
+  :show_tasks(tasks);
+  :get_task_number();
+  if (¿Número inválido?) then (Sí)
+    :show_message("Número de tarea inválido.");
+  else (No)
+    :remove tarea de lista;
+    :save_tasks(tasks);
+    :show_message("Tarea eliminada.");
+  endif
+endif
+
+stop
+@enduml

@@ -1,0 +1,16 @@
+' C3 reducido: solo detalla el interior de TaskController
+@startuml
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+LAYOUT_WITH_LEGEND()
+
+Container(taskController, "TaskController", "Python Class", "Controlador principal")
+
+Component(view, "TaskView", "Manejo de entrada/salida")
+Component(model, "Task", "Lógica y validación de tareas")
+Component(repoInterface, "TaskRepo", "Interfaz de almacenamiento")
+
+Rel(taskController, view, "Usa para mostrar datos")
+Rel(taskController, model, "Crea y modifica tareas")
+Rel(taskController, repoInterface, "Guarda o carga tareas")
+
+@enduml

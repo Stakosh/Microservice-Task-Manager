@@ -1,0 +1,27 @@
+@startuml
+actor Usuario
+Usuario -> Task : __init__("Comprar leche", False)
+activate Task
+Task -> Task : inicializa atributos title y completed
+deactivate Task
+
+Usuario -> Task : to_dict()
+activate Task
+Task --> Usuario : {"title": "Comprar leche", "completed": False}
+deactivate Task
+
+Usuario -> Task : mark_completed()
+activate Task
+Task -> Task : self.completed = True
+deactivate Task
+
+Usuario -> Task : to_dict()
+activate Task
+Task --> Usuario : {"title": "Comprar leche", "completed": True}
+deactivate Task
+
+Usuario -> Task : from_dict({"title": "Estudiar", "completed": True})
+activate Task
+Task -> Task : __init__("Estudiar", True)
+deactivate Task
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+LAYOUT_WITH_LEGEND()
+
+Person(user, "Usuario", "Persona que gestiona tareas desde la consola")
+
+System(todoApp, "App de Tareas (todo_app)", "Aplicación de consola para gestión de tareas")
+
+Rel(user, todoApp, "Usa", "CLI")
+
+@enduml

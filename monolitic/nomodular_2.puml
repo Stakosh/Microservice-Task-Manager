@@ -1,0 +1,58 @@
+
+@startuml
+
+actor Usuario
+participant "main()" as Main
+participant "load_tasks()" as Load
+participant "save_tasks()" as Save
+participant "view_tasks()" as View
+participant "add_task()" as Add
+participant "complete_task()" as Complete
+participant "delete_task()" as Delete
+participant "Archivo tasks.json" as File
+
+Usuario -> Main : Ejecuta app
+Main -> Load : load_tasks()
+Load -> File : Leer tasks.json
+File --> Load : Tareas (JSON o lista vacía)
+Load --> Main : Lista de tareas
+
+loop Menú principal
+    Usuario -> Main : Selecciona opción
+
+    alt Ver tareas (1)
+        Main -> View : view_tasks(tasks)
+        View -> Usuario : Muestra tareas
+    end
+
+    alt Agregar tarea (2)
+        Usuario -> Main : Ingresa título
+        Main -> Add : add_task(tasks)
+        Add -> Save : save_tasks(tasks)
+        Save -> File : Escribir tasks.json
+    end
+
+    alt Completar tarea (3)
+        Main -> Complete : complete_task(tasks)
+        Complete -> View : view_tasks(tasks)
+        View -> Usuario : Muestra tareas
+        Usuario -> Complete : Número de tarea
+        Complete -> Save : save_tasks(tasks)
+        Save -> File : Actualiza tasks.json
+    end
+
+    alt Eliminar tarea (4)
+        Main -> Delete : delete_task(tasks)
+        Delete -> View : view_tasks(tasks)
+        View -> Usuario : Muestra tareas
+        Usuario -> Delete : Número de tarea
+        Delete -> Save : save_tasks(tasks)
+        Save -> File : Actualiza tasks.json
+    end
+
+    alt Salir (5)
+        Main -> Usuario : "¡Hasta luego!"
+    end
+end
+
+@enduml

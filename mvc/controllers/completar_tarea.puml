@@ -1,0 +1,30 @@
+@startuml
+actor Usuario
+participant Controller as "TaskController"
+participant View as "TaskView"
+participant Repo as "Repositorio"
+participant Task as "Task"
+
+== Completar una tarea ==
+
+Usuario -> Controller : complete_task()
+Controller -> View : show_tasks(tasks)
+View --> Controller : (muestra lista en consola)
+
+Controller -> View : get_task_number()
+View --> Controller : número
+
+alt número inválido
+    Controller -> View : show_message("Por favor, ingresa un número válido.")
+else número válido
+    Controller -> Controller : _get_task_by_number(número)
+    alt tarea existe
+        Controller -> Task : mark_completed()
+        Controller -> Repo : save_tasks(tasks)
+        Repo --> Controller : (guardado)
+        Controller -> View : show_message("Tarea completada.")
+    else tarea no encontrada
+        Controller -> View : show_message("Número de tarea inválido.")
+    end
+end
+@enduml

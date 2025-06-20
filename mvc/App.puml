@@ -1,0 +1,47 @@
+@startuml
+actor Usuario
+Usuario -> Main : ejecuta main()
+Main -> TaskController : instancia con TaskRepo
+
+loop Bucle principal
+    Main -> TaskView : mostrar_menu()
+    TaskView -> Usuario : muestra opciones
+    Usuario -> Main : ingresa opción
+    Main -> TaskController : según opción -> add_task() / show_tasks() / ...
+
+    alt Ver tareas
+        TaskController -> TaskRepo : load_tasks()
+        TaskRepo -> Task : from_dict()
+        TaskController -> TaskView : show_tasks(tasks)
+    else Agregar tarea
+        TaskController -> TaskView : pedir descripción
+        TaskView -> Usuario : input()
+        Usuario -> TaskView : respuesta
+        TaskView -> TaskController : descripción
+        TaskController -> Task : nueva instancia
+        TaskController -> TaskRepo : load_tasks()
+        TaskRepo -> Task : from_dict()
+        TaskController -> TaskRepo : save_tasks([nueva + anteriores])
+        TaskRepo -> Task : to_dict()
+    end
+end
+
+note right of Main
+  Este diagrama describe el flujo de interacción entre los componentes
+  de una aplicación de tareas:
+
+  - **Vista (TaskView)**: Se encarga de interactuar con el usuario, mostrando opciones y
+    recibiendo entradas. Muestra las tareas y solicita información como la descripción de la tarea.
+
+  - **Controlador (TaskController)**: Gestiona la interacción entre la Vista y el Modelo, ejecutando
+   acciones basadas en las opciones del usuario (ver, agregar, completar, eliminar tareas).
+
+  - **Storage (TaskRepo)**: Se ocupa del almacenamiento de los datos.
+    `TaskRepo` maneja la persistencia, guardando y cargando las tareas desde un archivo.
+
+  - **Modelo (Task)**: El modelo se ocupa de la representación de la tarea.
+    `Task` es la representación de una tarea, conteniendo la lógica interna de cada tarea, como
+    su título y estado de completado.
+end note
+@enduml
+

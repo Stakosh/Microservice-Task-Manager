@@ -1,0 +1,39 @@
+@startuml
+actor Usuario
+participant TaskView
+
+== Mostrar lista de tareas ==
+Usuario -> TaskView : show_tasks(tasks)
+activate TaskView
+alt Lista vacía
+    TaskView -> Usuario : "No hay tareas para mostrar."
+else Lista con tareas
+    loop Por cada tarea
+        TaskView -> Usuario : imprimir idx, título, estado
+    end
+end
+deactivate TaskView
+
+== Pedir una nueva tarea ==
+Usuario -> TaskView : get_task_input()
+activate TaskView
+TaskView -> Usuario : "Ingrese el título de la tarea: "
+Usuario -> TaskView : título ingresado
+TaskView --> Usuario : return título
+deactivate TaskView
+
+== Pedir número de tarea ==
+Usuario -> TaskView : get_task_number()
+activate TaskView
+TaskView -> Usuario : "Ingrese el número de la tarea: "
+Usuario -> TaskView : número como string
+TaskView -> TaskView : convertir a int
+TaskView --> Usuario : return número
+deactivate TaskView
+
+== Mostrar mensaje ==
+Usuario -> TaskView : show_message(mensaje)
+activate TaskView
+TaskView -> Usuario : print(mensaje)
+deactivate TaskView
+@enduml

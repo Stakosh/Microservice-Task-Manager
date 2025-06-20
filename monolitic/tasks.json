@@ -1,0 +1,18 @@
+[
+    {
+        "title": "Ir al supermercado",
+        "completed": true
+    },
+    {
+        "title": "Hacer el almuerzo",
+        "completed": false
+    },
+    {
+        "title": "Preparar la clase",
+        "completed": false
+    },
+    {
+        "title": "Pasear al perro",
+        "completed": false
+    }
+]

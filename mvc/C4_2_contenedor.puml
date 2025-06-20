@@ -1,0 +1,25 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+LAYOUT_WITH_LEGEND()
+
+Person(user, "Usuario", "Persona que usa la consola")
+
+System_Boundary(todoApp, "todo_app") {
+    Container(main, "main.py", "Python CLI", "Punto de entrada")
+    Container(controller, "TaskController", "Python Class", "Lógica de aplicación")
+    Container(view, "TaskView", "Python Class", "Interacción con el usuario")
+    Container(model, "Task", "Python Class", "Modelo de datos de una tarea")
+    Container(repo, "TaskRepo", "Interface", "Carga y almacenamiento de tareas")
+    ContainerDb(persistentRepo, "TaskRepoPersistent", "Archivo JSON", "Implementación en disco")
+    Container(repoMemory, "TaskRepoMemory", "En memoria", "Implementación temporal de almacenamiento")
+}
+
+Rel(user, main, "Usa", "CLI")
+Rel(main, controller, "Invoca")
+Rel(controller, view, "Muestra datos a")
+Rel(controller, model, "Crea/actualiza")
+Rel(controller, repo, "Lee/Escribe tareas")
+Rel(repo, persistentRepo, "Usa por defecto")
+Rel_L(repo, repoMemory, "Alternativa para pruebas")
+
+@enduml
